@@ -19,25 +19,26 @@ jobs:
           git clone git://kernel.ubuntu.com/ubuntu/ubuntu-impish.git
           echo "克隆完成"
         
-      - name: 拷贝文件
-        run: |
-          mv ./pve-kernel/* ./
-          rm -rf ./pve-kernel
+      #- name: 拷贝文件
+      #  run: |
+      #    mv ./pve-kernel/* ./
+      #    rm -rf ./pve-kernel
         
 
-      - name: 准备构建环境
-        run: |
-          rm -rf ./patches/kernel/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch
-          curl -o ./patches/kernel/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch https://raw.githubusercontent.com/ybin116/build_pve_kernel_unIOMMU/main/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch
+      #- name: 准备构建环境
+      #  run: |
+      #    rm -rf ./patches/kernel/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch
+      #    curl -o ./patches/kernel/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch https://raw.githubusercontent.com/ybin116/build_pve_kernel_unIOMMU/main/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch
 
-      - name: 编译
-        run: |
-          make
+      #- name: 编译
+      #  run: |
+      #    make
 
 
       - name: 上传引导镜像到 github actions
         uses: actions/upload-artifact@v2
         with:
           name: pve-kernel
-          path: ./*.deb
+       #   path: ./*.deb
+          path: ./pve-kernel/*
           if-no-files-found: error
