@@ -18,7 +18,7 @@ jobs:
           echo "克隆完成"
         
       - name: 拷贝文件
-      run: |
+        run: |
           mv ./pve-kernel/* ./
           rm -rf ./pve-kernel
         
