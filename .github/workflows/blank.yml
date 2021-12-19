@@ -12,9 +12,8 @@ jobs:
     steps:
       - name: clone proxmox/pve-kernel
         run: |
-          git clone https://github.com/proxmox/pve-kernel.git
-          cd ./pve-kernel/submodules
-          git clone http://kernel.ubuntu.com/git/ubuntu/ubuntu-impish.git
+          # git clone https://github.com/proxmox/pve-kernel.git
+          git clone git://git.proxmox.com/git/pve-kernel.git
           echo "克隆完成"
         
       - name: 拷贝文件
