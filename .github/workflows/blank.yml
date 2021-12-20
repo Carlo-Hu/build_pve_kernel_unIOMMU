@@ -15,8 +15,8 @@ jobs:
           # git clone https://github.com/proxmox/pve-kernel.git
           git clone -b pve-kernel-5.13 https://github.com/proxmox/pve-kernel.git
           # git clone git://git.proxmox.com/git/pve-kernel.git
-          cd ./pve-kernel/submodules
-          git clone git://kernel.ubuntu.com/ubuntu/ubuntu-impish.git
+          # cd ./pve-kernel/submodules
+          # git clone git://kernel.ubuntu.com/ubuntu/ubuntu-impish.git
           echo "克隆完成"
         
       #- name: 拷贝文件
@@ -25,20 +25,21 @@ jobs:
       #    rm -rf ./pve-kernel
         
 
-      #- name: 准备构建环境
-      #  run: |
-      #    rm -rf ./patches/kernel/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch
-      #    curl -o ./patches/kernel/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch https://raw.githubusercontent.com/ybin116/build_pve_kernel_unIOMMU/main/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch
+      - name: 准备构建环境
+        run: |
+          apt-get install dpkg-dev
+          rm -rf ./patches/kernel/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch
+          curl -o ./patches/kernel/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch https://raw.githubusercontent.com/ybin116/build_pve_kernel_unIOMMU/main/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch
 
-      #- name: 编译
-      #  run: |
-      #    make
+      - name: 编译
+        run: |
+          make
 
 
       - name: 上传引导镜像到 github actions
         uses: actions/upload-artifact@v2
         with:
           name: pve-kernel
-       #   path: ./*.deb
-          path: ./pve-kernel/*
+          path: ./*.deb
+       #   path: ./pve-kernel/*
           if-no-files-found: error
