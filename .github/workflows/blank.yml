@@ -29,8 +29,10 @@ jobs:
         run: |
           sudo apt-get install dpkg-dev
           rm -rf ./patches/kernel/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch
-          sudo curl -o ./patches/kernel/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch https://raw.githubusercontent.com/ybin116/build_pve_kernel_unIOMMU/main/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch
-
+          # sudo curl -o ./patches/kernel/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch https://raw.githubusercontent.com/ybin116/build_pve_kernel_unIOMMU/main/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch
+          curl -O https://raw.githubusercontent.com/ybin116/build_pve_kernel_unIOMMU/main/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch
+          mv 0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch ./patches/kernel/
+          
       - name: 编译
         run: |
           sudo make
