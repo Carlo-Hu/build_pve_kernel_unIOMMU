@@ -25,18 +25,18 @@ jobs:
           # git clone git://kernel.ubuntu.com/ubuntu/ubuntu-impish.git ./pve-kernel/submodules/ubuntu-impish/
           # git clone https://github.com/zfsonlinux/zfs-auto-snapshot.git ./pve-kernel/submodules/zfsonlinux/
           
-          #git clone git://git.proxmox.com/git/pve-kernel.git
-          #git clone git://git.proxmox.com/git/zfsonlinux ./pve-kernel/submodules/zfsonlinux
-          #git clone git://git.proxmox.com/git/mirror_ubuntu-jammy-kernel ./pve-kernel/submodules/ubuntu-jammy
+          #git clone git://git.proxmox.com/git/pve-kernel.git ./
+          #git clone git://git.proxmox.com/git/zfsonlinux ./pve-kernel/submodules/zfsonlinux ./submodules/zfsonlinux
+          #git clone git://git.proxmox.com/git/mirror_ubuntu-jammy-kernel ./pve-kernel/submodules/ubuntu-jammy ./submodules/ubuntu-jammy
           
           echo "克隆完成"
         
         
-      - name: 拷贝文件
-        run: |
-          mv ./pve-kernel/* ./
-          rm -rf ./pve-kernel
-          # rm -rf ./submodules/zfsonlinux
+      #- name: 拷贝文件
+      #  run: |
+      #    mv ./pve-kernel/* ./
+      #    rm -rf ./pve-kernel
+      #    # rm -rf ./submodules/zfsonlinux
         
 
       - name: 准备构建环境
