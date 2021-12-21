@@ -46,7 +46,9 @@ jobs:
           sudo curl -o ./patches/kernel/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch https://raw.githubusercontent.com/ybin116/build_pve_kernel_unIOMMU/main/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch
           # curl -O https://raw.githubusercontent.com/ybin116/build_pve_kernel_unIOMMU/main/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch
           # mv 0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch ./patches/kernel/
-          
+          apt-get install build-essentialasciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzipzlib1g-dev libc6-dev subversion flex uglifyjs p7zip p7zip-full msmtp libssl-devtexinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automakelibtool autopoint device-tree-compiler screen
+          apt-get install python3-dev  python3-sphinx lintian bc bison libdw-devlibiberty-dev libnuma-dev libslang2-dev lz4 rsync  libpve-common-perl dh-make docbook5-xml
+  
       #- name: 编译
       #  run: |
       #    sudo make
