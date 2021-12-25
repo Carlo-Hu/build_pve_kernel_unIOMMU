@@ -19,8 +19,8 @@ jobs:
           # git clone https://github.com/zfsonlinux/zfs-auto-snapshot.git ./pve-kernel/submodules/zfsonlinux/
           
           git clone git://git.proxmox.com/git/pve-kernel.git ./
-          #git clone git://git.proxmox.com/git/zfsonlinux ./pve-kernel/submodules/zfsonlinux ./submodules/zfsonlinux
-          #git clone git://git.proxmox.com/git/mirror_ubuntu-jammy-kernel ./pve-kernel/submodules/ubuntu-jammy ./submodules/ubuntu-jammy
+          git clone git://git.proxmox.com/git/zfsonlinux ./pve-kernel/submodules/zfsonlinux ./submodules/zfsonlinux
+          git clone git://git.proxmox.com/git/mirror_ubuntu-jammy-kernel ./pve-kernel/submodules/ubuntu-jammy ./submodules/ubuntu-jammy
           
           echo "克隆完成"
     
@@ -43,16 +43,19 @@ jobs:
         run: |
           pwd
           ls -l
-          git checkout pve-kernel-5.13
+          # git checkout pve-kernel-5.13
           git branch
           sudo apt-get install dpkg-dev
+          sudo mk-build-deps --install debian/control.in
+          sudo git submodule foreach git fetch --tags
+          sudo git submodule update --init
           sudo rm -rf ./patches/kernel/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch
           sudo curl -o ./patches/kernel/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch https://raw.githubusercontent.com/ybin116/build_pve_kernel_unIOMMU/main/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch
           # curl -O https://raw.githubusercontent.com/ybin116/build_pve_kernel_unIOMMU/main/0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch
           # mv 0003-pci-Enable-overrides-for-missing-ACS-capabilities-4..patch ./patches/kernel/
           # sudo apt-get install build-essentialasciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzipzlib1g-dev libc6-dev subversion flex uglifyjs p7zip p7zip-full msmtp libssl-devtexinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automakelibtool autopoint device-tree-compiler screen
           # sudo apt-get install python3-dev  python3-sphinx lintian bc bison libdw-devlibiberty-dev libnuma-dev libslang2-dev lz4 rsync   libpve-common-perl dh-make docbook5-xml
-          sudo apt install devscripts asciidoc-base automake bc bison cpio dh-python bison flex git kmod libdw-dev libelf-dev libiberty-dev libnuma-dev libslang2-dev libssl-dev libtool lintian lz4 perl-modules python2-minimal rsync sed sphinx-common tar xmlto zlib1g-dev dwarves net-tools htop vnstat
+          # sudo apt install devscripts asciidoc-base automake bc bison cpio dh-python bison flex git kmod libdw-dev libelf-dev libiberty-dev libnuma-dev libslang2-dev libssl-dev libtool lintian lz4 perl-modules python2-minimal rsync sed sphinx-common tar xmlto zlib1g-dev dwarves net-tools htop vnstat
   
       - name: 编译
         run: |
