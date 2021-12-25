@@ -45,7 +45,7 @@ jobs:
           ls -l
           # git checkout pve-kernel-5.13
           git branch
-          sudo apt-get install dpkg-dev
+          sudo apt-get install dpkg-dev devscripts
           sudo mk-build-deps --install debian/control.in
           sudo git submodule foreach git fetch --tags
           sudo git submodule update --init
