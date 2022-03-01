@@ -6,7 +6,6 @@ jobs:
   build:
     # runs-on: ubuntu-latest
     runs-on: debian-latest
-    if: github.event.repository.owner.id == github.event.sender.id
         name: 编译 "${{matrix.platform}} ${{matrix.version}}"
     strategy:
       fail-fast: false
