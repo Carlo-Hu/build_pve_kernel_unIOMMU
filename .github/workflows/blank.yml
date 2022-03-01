@@ -1,6 +1,11 @@
 name: pve-kernel去分区内核编译
 
-on: 
+on:
+  release:
+    types: published
+  push:
+    branches:
+      - master 
 
 jobs:
   build:
