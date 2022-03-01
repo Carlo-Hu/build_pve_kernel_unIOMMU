@@ -6,15 +6,13 @@ jobs:
   build:
     # runs-on: ubuntu-latest
     runs-on: debian-latest
-        name: 编译 "${{matrix.platform}} ${{matrix.version}}"
-    strategy:
-      fail-fast: false
-
+    if: github.event.repository.owner.id == github.event.sender.id
+     
     steps:
       - name: clone proxmox/pve-kernel
         run: |
           # git clone https://github.com/proxmox/pve-kernel.git
-          # git clone -b pve-kernel-5.13 https://github.com/proxmox/pve-kernel.git
+          # git clone -b pve-kernel-5.11 https://github.com/proxmox/pve-kernel.git
           # cd ./pve-kernel/submodules
           # git clone git://kernel.ubuntu.com/ubuntu/ubuntu-impish.git ./pve-kernel/submodules/ubuntu-impish/
           # git clone https://github.com/zfsonlinux/zfs-auto-snapshot.git ./pve-kernel/submodules/zfsonlinux/
